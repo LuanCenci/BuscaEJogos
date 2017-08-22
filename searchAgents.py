@@ -475,8 +475,8 @@ class AStarFoodSearchAgent(SearchAgent):
     def __init__(self):
         self.searchFunction = lambda prob: search.aStarSearch(prob, foodHeuristic)
         self.searchType = FoodSearchProblem
-
 def foodHeuristic(state, problem):
+    
     """
     Your heuristic for the FoodSearchProblem goes here.
 
@@ -505,8 +505,19 @@ def foodHeuristic(state, problem):
     problem.heuristicInfo['wallCount']
     """
     position, foodGrid = state
-    "*** YOUR CODE HERE ***"
-    return 0
+    
+    foods = foodGrid.asList() # List of foods
+    
+    r =0
+    
+    ali = 0
+    
+    """Use the Manhattan Heuristic"""    
+    
+    for nodo in foods:
+        r = max(r,util.manhattanDistance(position,nodo))
+        
+    return r
 
 def mazeDistance(point1, point2, gameState):
     """
